@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { setWeather } from "../../ducks/weather.js"
 
 import "./EnterLocation.css";
 
@@ -19,7 +20,7 @@ class EnterLocation extends Component {
 
   handleSubmit( event ) {
     event.preventDefault();
-
+    this.props.setWeather( this.state.location )
     this.setState( { location: "" } );
   }
 
@@ -32,7 +33,7 @@ class EnterLocation extends Component {
         <input
           className="enter-location__input"
           onChange={ this.handleChange }
-          placeholder="London / 84601"
+          placeholder="Seattle, WA"
           type="text"
           value={ this.state.location }
         />
@@ -46,4 +47,4 @@ class EnterLocation extends Component {
   }
 }
 
-export default connect( state => state, {})( EnterLocation );
+export default connect( state => state, { setWeather })( EnterLocation );
