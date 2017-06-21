@@ -8,7 +8,7 @@ class EnterLocation extends Component {
   constructor( props ) {
     super( props );
 
-    this.state = { location: "" };
+    this.state = { location: "", defaultLocation: "Seattle, WA" };
 
     this.handleChange = this.handleChange.bind( this );
     this.handleSubmit = this.handleSubmit.bind( this );
@@ -20,8 +20,8 @@ class EnterLocation extends Component {
 
   handleSubmit( event ) {
     event.preventDefault();
-    this.props.setWeather( this.state.location )
-    this.setState( { location: "" } );
+    this.props.setWeather( this.state.location || this.state.defaultLocation )
+    this.setState( { location: "", defaultLocation: "Seattle, WA" } );
   }
 
   render() {
@@ -33,7 +33,7 @@ class EnterLocation extends Component {
         <input
           className="enter-location__input"
           onChange={ this.handleChange }
-          placeholder="Seattle, WA"
+          placeholder={ this.state.defaultLocation }
           type="text"
           value={ this.state.location }
         />
